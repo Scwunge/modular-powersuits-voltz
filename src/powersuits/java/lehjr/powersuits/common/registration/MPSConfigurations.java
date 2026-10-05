@@ -5,6 +5,7 @@ import lehjr.powersuits.client.config.MPSClientConfig;
 import lehjr.powersuits.common.config.ArmorConfig;
 import lehjr.powersuits.common.config.MPSCommonConfig;
 import lehjr.powersuits.common.config.PowerFistConfig;
+import lehjr.powersuits.common.config.compat.MekanismCompatConfig;
 import lehjr.powersuits.common.config.module.ArmorModuleConfig;
 import lehjr.powersuits.common.config.module.AxeModuleConfig;
 import lehjr.powersuits.common.config.module.CosmeticModuleConfig;
@@ -82,6 +83,9 @@ public class MPSConfigurations {
         registerServer(modContainer, VisionModuleConfig.MPS_VISION_MODULE_SPEC, "items/modules/vision.toml");
         // Weapon
         registerServer(modContainer, WeaponModuleConfig.MPS_WEAPON_MODULE_SPEC, "items/modules/weapon.toml");
+
+        // Mod compatibility (COMMON: read at startup, not per world) -------------------------------------------
+        registerCommon(modContainer, MekanismCompatConfig.MEKANISM_COMPAT_SPEC, "common/compat/mekanism.toml");
     }
 
     static void registerClient(ModContainer modContainer, ModConfigSpec spec, String path) {
@@ -137,5 +141,7 @@ public class MPSConfigurations {
 
         VisionModuleConfig.onLoad(event);
         WeaponModuleConfig.onLoad(event);
+
+        MekanismCompatConfig.onLoad(event);
     }
 }

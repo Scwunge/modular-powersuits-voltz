@@ -37,3 +37,11 @@ license="${mod_license}"
     ordering="AFTER"
     side="BOTH"
     modLoader="javafml" #mandatory
+
+# Optional integrations (soft dependencies; nothing is loaded from them unless they are present)
+[[dependencies.powersuits]]
+    modId="mekanism"
+    type="optional"
+    versionRange="[10.7,)"
+    ordering="AFTER"
+    side="BOTH"

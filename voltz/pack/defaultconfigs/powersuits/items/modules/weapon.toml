@@ -1,0 +1,87 @@
+# Modular Powersuits weapon modules: Voltz server defaults.
+# Generated from the mod's own config spec; differences from the mod defaults are marked "Voltz server default".
+# Lightning Summoner is disabled, and plasma explosions do not break blocks (explosionsDestroyBlocks, already the mod default).
+
+	[Weapon_Modules.Railgun]
+		# Default: 2500.0
+		# Range: 0.0 ~ 100000.0
+		energyConvoltageMultiplier = 2500.0
+		isAllowed = true
+		# Default: 10.0
+		# Range: 0.0 ~ 100000.0
+		heatEmissionvoltageMultiplier = 10.0
+		# Default: 500.0
+		# Range: 0.0 ~ 100000.0
+		totalImpulseBase = 500.0
+		# Default: 500.0
+		# Range: 0.0 ~ 100000.0
+		energyConBase = 500.0
+		# Default: 2.0
+		# Range: 0.0 ~ 100000.0
+		heatEmissionBase = 2.0
+		# Default: 2500.0
+		# Range: 0.0 ~ 100000.0
+		totalImpulsevoltageMultiplier = 2500.0
+
+	[Weapon_Modules.Melee_Assist]
+		isAllowed = true
+		# Default: 200.0
+		# Range: 0.0 ~ 100000.0
+		energyConcarryThroughMultiplier = 200.0
+		# Default: 2.0
+		# Range: 0.0 ~ 100000.0
+		meleeDamageImpactMultiplier = 2.0
+		# Default: 2.0
+		# Range: 0.0 ~ 100000.0
+		meleeDamageBase = 2.0
+		# Default: 1000.0
+		# Range: 0.0 ~ 100000.0
+		energyConImpactMultiplier = 1000.0
+		# Default: 10.0
+		# Range: 0.0 ~ 100000.0
+		energyConBase = 10.0
+		# Default: 1.0
+		# Range: 0.0 ~ 100000.0
+		meleeKnockbackcarryThroughMultiplier = 1.0
+
+	[Weapon_Modules.Blade_Launcher]
+		isAllowed = true
+		# Default: 6.0
+		# Range: 0.0 ~ 100000.0
+		spinBladeDam = 6.0
+		# Default: 5000.0
+		# Range: 0.0 ~ 100000.0
+		energyConBase = 5000.0
+
+	[Weapon_Modules.Plasma_Cannon]
+		isAllowed = true
+		# Default: 2.0
+		# Range: 0.0 ~ 100000.0
+		plasmaDamageBase = 2.0
+		# Default: 1500.0
+		# Range: 0.0 ~ 100000.0
+		energyPerTickamperageMultiplier = 1500.0
+		# Default: 38.0
+		# Range: 0.0 ~ 100000.0
+		plasmaDamageamperageMultiplier = 38.0
+		# Default: 0.5
+		# Range: 0.0 ~ 100000.0
+		plasmaExplosivenessvoltageMultiplier = 0.5
+		# Default: 100.0
+		# Range: 0.0 ~ 100000.0
+		energyPerTickBase = 100.0
+		#When true, plasma explosions break blocks (still only if the mobGriefing gamerule is on). When false they only hurt and knock back entities.
+		explosionsDestroyBlocks = false
+		# Default: 500.0
+		# Range: 0.0 ~ 100000.0
+		energyPerTickvoltageMultiplier = 500.0
+
+	[Weapon_Modules.Lightning_Summoner_Launcher]
+		#Voltz server default: off. Each use spawns a real lightning bolt (fire, charged creepers) up to 64 blocks away.
+		isAllowed = false
+		# Default: 100.0
+		# Range: 0.0 ~ 100000.0
+		heatEmission = 100.0
+		# Default: 4900000.0
+		# Range: 0.0 ~ 1.0E7
+		energyConBase = 4900000.0

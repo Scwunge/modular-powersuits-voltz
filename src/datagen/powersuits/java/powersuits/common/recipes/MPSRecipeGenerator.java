@@ -65,7 +65,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_FIST_1.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_FIST_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -74,7 +74,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_FIST_2.get()),
-                SizedIngredient.of(Items.DIAMOND, 4),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_FIST_3.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -83,7 +83,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_FIST_3.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_FIST_4.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -136,7 +136,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_HELMET_1.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_HELMET_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -145,7 +145,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_HELMET_2.get()),
-                SizedIngredient.of(Items.DIAMOND, 4),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_HELMET_3.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -154,7 +154,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_HELMET_3.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_HELMET_4.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -208,7 +208,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_CHESTPLATE_1.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 5),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 5),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_CHESTPLATE_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -217,7 +217,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_CHESTPLATE_2.get()),
-                SizedIngredient.of(Items.DIAMOND, 5),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 5),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_CHESTPLATE_3.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -226,7 +226,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_CHESTPLATE_3.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 5),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 5),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_CHESTPLATE_4.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -280,7 +280,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_LEGGINGS_1.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 5),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 5),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_LEGGINGS_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -289,7 +289,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_LEGGINGS_2.get()),
-                SizedIngredient.of(Items.DIAMOND, 5),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 5),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_LEGGINGS_3.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -298,7 +298,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_LEGGINGS_3.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 5),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 5),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_LEGGINGS_4.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -350,7 +350,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_BOOTS_1.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 2),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 2),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_BOOTS_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -359,7 +359,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_BOOTS_2.get()),
-                SizedIngredient.of(Items.DIAMOND, 2),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 2),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_BOOTS_3.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -368,7 +368,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.POWER_ARMOR_BOOTS_3.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 2),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 2),
                 RecipeCategory.TOOLS,
                 MPSItems.POWER_ARMOR_BOOTS_4.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -459,7 +459,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.THERMAL_GENERATOR_MODULE_1.get()),
-                SizedIngredient.of(Items.GOLD_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_GOLD, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.THERMAL_GENERATOR_MODULE_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -498,7 +498,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.SOLAR_GENERATOR_MODULE_1.get()),
-                SizedIngredient.of(Items.GOLD_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_GOLD, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.SOLAR_GENERATOR_MODULE_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -523,13 +523,12 @@ public class MPSRecipeGenerator extends RecipeProvider {
             .save(output);
 
         // Combustion ----------------------------------------------------------------------------------
-        // Placeholder recipes (Phase 1); Voltz material rework is done in Phase 2
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MPSItems.COMBUSTION_GENERATOR_MODULE_1.get())
             .pattern("IFI")
             .pattern("WCW")
             .pattern("IFI")
             .define('I', NuminaItems.PLATING_IRON.get())
-            .define('F', Items.FURNACE)
+            .define('F', Tags.Items.PLAYER_WORKSTATIONS_FURNACES)
             .define('W', NuminaItems.WIRING_COPPER.get())
             .define('C', NuminaItems.CONTROL_CIRCUIT_1.get())
             .unlockedBy(getHasName(MPSItems.POWER_ARMOR_CHESTPLATE_1.get()), has(MPSItems.POWER_ARMOR_CHESTPLATE_1.get()))
@@ -538,7 +537,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get()),
-                SizedIngredient.of(Items.GOLD_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_GOLD, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.COMBUSTION_GENERATOR_MODULE_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -577,7 +576,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.KINETIC_GENERATOR_MODULE_1.get()),
-                SizedIngredient.of(Items.GOLD_INGOT, 4),
+                SizedIngredient.of(Tags.Items.INGOTS_GOLD, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.KINETIC_GENERATOR_MODULE_2.get())
             .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
@@ -927,7 +926,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.STONE_AXE_MODULE.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 3),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 3),
                 RecipeCategory.TOOLS,
                 MPSItems.IRON_AXE_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_2.get()), has(NuminaItems.CONTROL_CIRCUIT_2.get()))
@@ -936,7 +935,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.IRON_AXE_MODULE.get()),
-                SizedIngredient.of(Items.DIAMOND, 3),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 3),
                 RecipeCategory.TOOLS,
                 MPSItems.DIAMOND_AXE_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -945,7 +944,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.DIAMOND_AXE_MODULE.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 3),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 3),
                 RecipeCategory.TOOLS,
                 MPSItems.NETHERITE_AXE_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -966,7 +965,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.STONE_PICKAXE_MODULE.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 3),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 3),
                 RecipeCategory.TOOLS,
                 MPSItems.IRON_PICKAXE_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_2.get()), has(NuminaItems.CONTROL_CIRCUIT_2.get()))
@@ -975,7 +974,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.IRON_PICKAXE_MODULE.get()),
-                SizedIngredient.of(Items.DIAMOND, 3),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 3),
                 RecipeCategory.TOOLS,
                 MPSItems.DIAMOND_PICKAXE_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -984,7 +983,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.DIAMOND_PICKAXE_MODULE.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 3),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 3),
                 RecipeCategory.TOOLS,
                 MPSItems.NETHERITE_PICKAXE_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -1005,7 +1004,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.STONE_ROTOTILLER_MODULE.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 2),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 2),
                 RecipeCategory.TOOLS,
                 MPSItems.IRON_ROTOTILLER_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_2.get()), has(NuminaItems.CONTROL_CIRCUIT_2.get()))
@@ -1014,7 +1013,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.IRON_ROTOTILLER_MODULE.get()),
-                SizedIngredient.of(Items.DIAMOND, 2),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 2),
                 RecipeCategory.TOOLS,
                 MPSItems.DIAMOND_ROTOTILLER_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -1023,7 +1022,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.DIAMOND_ROTOTILLER_MODULE.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 2),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 2),
                 RecipeCategory.TOOLS,
                 MPSItems.NETHERITE_ROTOTILLER_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
@@ -1044,7 +1043,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.STONE_SHOVEL_MODULE.get()),
-                SizedIngredient.of(Items.IRON_INGOT, 1),
+                SizedIngredient.of(Tags.Items.INGOTS_IRON, 1),
                 RecipeCategory.TOOLS,
                 MPSItems.IRON_SHOVEL_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_2.get()), has(NuminaItems.CONTROL_CIRCUIT_2.get()))
@@ -1053,7 +1052,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.IRON_SHOVEL_MODULE.get()),
-                SizedIngredient.of(Items.DIAMOND, 1),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 1),
                 RecipeCategory.TOOLS,
                 MPSItems.DIAMOND_SHOVEL_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_3.get()), has(NuminaItems.CONTROL_CIRCUIT_3.get()))
@@ -1062,7 +1061,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
         SmithingUpgradeRecipeBuilder.smithing(
                 Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.DIAMOND_SHOVEL_MODULE.get()),
-                SizedIngredient.of(Items.NETHERITE_INGOT, 1),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 1),
                 RecipeCategory.TOOLS,
                 MPSItems.NETHERITE_SHOVEL_MODULE.get())
             .unlockedBy(getHasName(NuminaItems.CONTROL_CIRCUIT_4.get()), has(NuminaItems.CONTROL_CIRCUIT_4.get()))
