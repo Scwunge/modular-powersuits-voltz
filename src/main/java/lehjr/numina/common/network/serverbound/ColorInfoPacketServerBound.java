@@ -3,6 +3,7 @@ package lehjr.numina.common.network.serverbound;
 import lehjr.numina.common.capabilities.render.modelspec.IModelSpec;
 import lehjr.numina.common.constants.NuminaConstants;
 import lehjr.numina.common.network.NuminaPackets;
+import lehjr.numina.common.network.PacketValidation;
 import lehjr.numina.common.network.clientbound.ColorInfoPacketClientBound;
 import lehjr.numina.common.registration.NuminaCapabilities;
 import lehjr.numina.common.utils.ItemUtils;
@@ -46,6 +47,9 @@ public record ColorInfoPacketServerBound(EquipmentSlot slotType, int[] tagData) 
     public static void handle(ColorInfoPacketServerBound data, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
             Player player  = ctx.player();
+            if (data.tagData == null || data.tagData.length > PacketValidation.MAX_COLORS) {
+                return;
+            }
             IModelSpec spec = ItemUtils.getItemFromEntitySlot(player, data.slotType).getCapability(NuminaCapabilities.RENDER);
             if(spec != null) {
                 ItemStack newStack = spec.setColorArray(data.tagData);

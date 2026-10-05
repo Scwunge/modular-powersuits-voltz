@@ -56,12 +56,16 @@ public class SprintAssistModule extends AbstractPowerModule {
             // ----------------------------------------
             // player speed .1 walking, .13 sprinting
             // ----------------------------------------
+            // the speed is set through a packet from the client; never call it on the server (no client classes there)
+            if (!level.isClientSide()) {
+                return false;
+            }
             if (player.getAbilities().flying || player.isPassenger() || player.isFallFlying()  || player.isInWaterOrBubble()) {
                 setPlayerSpeed(0, 0);
                 return false;
             }
 
-            if (level.isClientSide()) {
+            {
                 double horzMovement = player.walkDist - player.walkDistO;
                 double totalEnergy = ElectricItemUtils.getPlayerEnergy(player);
 
@@ -93,7 +97,9 @@ public class SprintAssistModule extends AbstractPowerModule {
 
         @Override
         public boolean onPlayerTickInactive(Player player, Level level, @Nonnull ItemStack itemStack, int moduleIndex) {
-            setPlayerSpeed(0, 0);
+            if (level.isClientSide()) {
+                setPlayerSpeed(0, 0);
+            }
             return false;
         }
 

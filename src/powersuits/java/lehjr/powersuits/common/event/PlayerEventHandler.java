@@ -30,8 +30,9 @@ public class PlayerEventHandler {
             }
         }
 
-        if(!moduleNames.isEmpty()) {
-            MPSPackets.sendToPlayer(new ToggleableModuleListClientBound(moduleNames), (ServerPlayer) player);
+        // only real clients that negotiated the channel (not fake/mock players)
+        if(!moduleNames.isEmpty() && player instanceof ServerPlayer serverPlayer && serverPlayer.connection.hasChannel(ToggleableModuleListClientBound.ID.id())) {
+            MPSPackets.sendToPlayer(new ToggleableModuleListClientBound(moduleNames), serverPlayer);
         }
     }
 }

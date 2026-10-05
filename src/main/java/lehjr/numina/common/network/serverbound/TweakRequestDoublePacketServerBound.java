@@ -3,6 +3,7 @@ package lehjr.numina.common.network.serverbound;
 import lehjr.numina.common.capabilities.inventory.modularitem.IModularItem;
 import lehjr.numina.common.constants.NuminaConstants;
 import lehjr.numina.common.network.NuminaPackets;
+import lehjr.numina.common.network.PacketValidation;
 import lehjr.numina.common.network.clientbound.TweakRequestDoublePacketClientBound;
 import lehjr.numina.common.registration.NuminaCapabilities;
 import lehjr.numina.common.utils.ItemUtils;
@@ -55,8 +56,14 @@ public record TweakRequestDoublePacketServerBound(EquipmentSlot slotType, Resour
                 ItemStack stack = ItemUtils.getItemFromEntitySlot(player, data.slotType);
                 IModularItem iModularItem = NuminaCapabilities.getModularItemOrModeChangingCapability(stack);
                 if (iModularItem != null) {
-                    iModularItem.setModuleDouble(data.moduleRegName, data.tweakName, data.tweakValue);
-                    sendToClient((ServerPlayer) player, data.slotType, data.moduleRegName, data.tweakName, data.tweakValue);
+                    // only the module's own tinker sliders, and only values a slider can produce
+                    int slot = iModularItem.findInstalledModule(data.moduleRegName);
+                    double value = PacketValidation.tweakValue(data.tweakValue);
+                    if (slot < 0 || value < 0 || !PacketValidation.isTradeoff(iModularItem.getModuleCapability(iModularItem.getStackInSlot(slot)), data.tweakName)) {
+                        return;
+                    }
+                    iModularItem.setModuleDouble(data.moduleRegName, data.tweakName, value);
+                    sendToClient((ServerPlayer) player, data.slotType, data.moduleRegName, data.tweakName, value);
                 }
             }
         });

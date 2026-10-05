@@ -44,6 +44,10 @@ public record CreativeInstallPacketServerBound(EquipmentSlot slotType, ResourceL
     public static void handle(CreativeInstallPacketServerBound data, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
             final Player player = ctx.player();
+            // creative-menu install: free, fully charged modules, so creative players only
+            if (!player.getAbilities().instabuild) {
+                return;
+            }
             EquipmentSlot slotType = data.slotType;
             ResourceLocation regName = data.regName;
             Item item = BuiltInRegistries.ITEM.get(regName);

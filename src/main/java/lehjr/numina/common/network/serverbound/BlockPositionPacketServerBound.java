@@ -1,5 +1,6 @@
 package lehjr.numina.common.network.serverbound;
 
+import lehjr.numina.common.network.PacketValidation;
 import lehjr.numina.common.base.NuminaLogger;
 import lehjr.numina.common.capabilities.inventory.modechanging.IModeChangingItem;
 import lehjr.numina.common.constants.NuminaConstants;
@@ -46,7 +47,8 @@ public record BlockPositionPacketServerBound(BlockPos pos) implements CustomPack
 
         ctx.enqueueWork(() -> {
             Player player = ctx.player();
-            if (player instanceof ServerPlayer && data.pos != null) {
+            // the target must be loaded and within reach (no remote chunk loading through this packet)
+            if (player instanceof ServerPlayer && data.pos != null && PacketValidation.isReachable(player, data.pos)) {
                 try {
                     IModeChangingItem mci = NuminaCapabilities.getModeChangingModularItem(player.getMainHandItem());
                     if(mci != null) {

@@ -1,5 +1,6 @@
 package lehjr.powersuits.common.network.packets.serverbound;
 
+import lehjr.numina.common.capabilities.module.powermodule.IPowerModule;
 import lehjr.numina.common.capabilities.inventory.modularitem.IModularItem;
 import lehjr.numina.common.registration.NuminaCapabilities;
 import lehjr.numina.common.utils.ElectricItemUtils;
@@ -65,6 +66,17 @@ public record SetSprintAssistDoubleAndDrainServerBound(double boost, int drainAm
 
             IModularItem iModularItem = NuminaCapabilities.getModularItem(ItemUtils.getItemFromEntitySlot(player, EquipmentSlot.LEGS));
             if(iModularItem != null) {
+                // the client computes these; don't trust them beyond what the installed module allows
+                int slot = iModularItem.findInstalledModule(MPSConstants.SPRINT_ASSIST_MODULE);
+                IPowerModule sprintAssist = slot < 0 ? null : iModularItem.getModuleCapability(iModularItem.getStackInSlot(slot));
+                if (sprintAssist == null || !sprintAssist.isAllowed() || !sprintAssist.isModuleOnline() || !Double.isFinite(valueToSet)) {
+                    valueToSet = 0;
+                } else {
+                    double maxBoost = Math.max(sprintAssist.applyPropertyModifiers(MPSConstants.SPRINT_SPEED_MULTIPLIER) * 0.13,
+                        sprintAssist.applyPropertyModifiers(MPSConstants.WALKING_SPEED_MULTIPLIER) * 0.1);
+                    valueToSet = Math.max(0, Math.min(valueToSet, maxBoost));
+                }
+                drainAmount = Math.max(0, drainAmount);
                 // every 20 ticks
                 if ((!(valueToSet == 0) && (level.getGameTime() % 20) == 0)){
                     ElectricItemUtils.drainPlayerEnergy(player, drainAmount, false);

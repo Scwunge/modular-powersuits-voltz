@@ -3,6 +3,7 @@ package lehjr.numina.common.network.serverbound;
 import lehjr.numina.common.capabilities.render.modelspec.IModelSpec;
 import lehjr.numina.common.constants.NuminaConstants;
 import lehjr.numina.common.network.NuminaPackets;
+import lehjr.numina.common.network.PacketValidation;
 import lehjr.numina.common.network.clientbound.CosmeticInfoPacketClientBound;
 import lehjr.numina.common.registration.NuminaCapabilities;
 import lehjr.numina.common.utils.ItemUtils;
@@ -56,6 +57,10 @@ public record CosmeticInfoPacketServerBound(EquipmentSlot slotType, String tagNa
     public static void handle(CosmeticInfoPacketServerBound data, IPayloadContext ctx) {
         ctx.enqueueWork(() -> {
             Player player = ctx.player();
+            // cosmetic data is stored on the item and sent to everyone who sees it; cap its size
+            if (data.tagData == null || data.tagData.sizeInBytes() > PacketValidation.MAX_COSMETIC_TAG_BYTES) {
+                return;
+            }
             IModelSpec iModelSpec = ItemUtils.getItemFromEntitySlot(player, data.slotType).getCapability(NuminaCapabilities.RENDER);
             if(iModelSpec != null) {
                 iModelSpec.setRenderTag(data.tagData, data.tagName);
