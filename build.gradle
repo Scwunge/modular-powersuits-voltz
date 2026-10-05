@@ -263,7 +263,7 @@ neoForge {
 
             sourceSet = sourceSets.runMain
             // keep dev runs light (the machine is shared with games)
-            jvmArguments.addAll('-Xmx2G', '-Xms256M')
+            jvmArguments.addAll("-Xmx${findProperty('devXmx') ?: '2G'}", '-Xms256M')
         }
         //Note: To enable logging into the client account, set the mc_devlogin property to true in your gradle user home
         // You can also run gradlew runClient -Pmc_devlogin=true
@@ -289,7 +289,8 @@ neoForge {
         // Headless dedicated-server boot + GameTests (NeoForge auto-accepts the EULA for gametest servers)
         gameTestServer {
             type = 'gameTestServer'
-            gameDirectory.value(runsFolder.dir('gametest'))
+            // -PgametestDir=gametest-voltz runs with the Voltz pack's server-side mods staged in runs/gametest-voltz/mods
+            gameDirectory.value(runsFolder.dir((String) (findProperty('gametestDir') ?: 'gametest')))
             systemProperty 'neoforge.enabledGameTestNamespaces', 'powersuits,numina'
         }
         data {

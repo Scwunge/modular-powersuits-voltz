@@ -24,7 +24,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.level.BlockEvent;
 import net.neoforged.neoforge.common.util.FakePlayerFactory;
@@ -67,7 +71,7 @@ public class MPSGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
     public static void combustionGeneratorBurnsFuel(GameTestHelper helper) {
-        ServerPlayer player = helper.makeMockServerPlayerInLevel();
+        ServerPlayer player = testPlayer(helper);
         equip(player, EquipmentSlot.CHEST, MPSItems.POWER_ARMOR_CHESTPLATE_4.get(),
             new ItemStack(NuminaItems.BATTERY_1.get()), new ItemStack(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get()));
         player.getInventory().add(new ItemStack(Items.COAL, 4));
@@ -81,7 +85,7 @@ public class MPSGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 60)
     public static void combustionGeneratorIdlesWhenFull(GameTestHelper helper) {
-        ServerPlayer player = helper.makeMockServerPlayerInLevel();
+        ServerPlayer player = testPlayer(helper);
         equip(player, EquipmentSlot.CHEST, MPSItems.POWER_ARMOR_CHESTPLATE_4.get(),
             new ItemStack(NuminaItems.BATTERY_1.get()), new ItemStack(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get()));
         ElectricItemUtils.givePlayerEnergy(player, ElectricItemUtils.getMaxPlayerEnergy(player), false);
@@ -96,7 +100,7 @@ public class MPSGameTests {
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void kineticGeneratorChargesWhileWalking(GameTestHelper helper) {
-        ServerPlayer player = helper.makeMockServerPlayerInLevel();
+        ServerPlayer player = testPlayer(helper);
         equip(player, EquipmentSlot.CHEST, MPSItems.POWER_ARMOR_CHESTPLATE_4.get(), new ItemStack(NuminaItems.BATTERY_1.get()));
         equip(player, EquipmentSlot.LEGS, MPSItems.POWER_ARMOR_LEGGINGS_4.get(), new ItemStack(MPSItems.KINETIC_GENERATOR_MODULE_1.get()));
 
@@ -113,7 +117,7 @@ public class MPSGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
     public static void solarGeneratorChargesInDaylight(GameTestHelper helper) {
         helper.getLevel().setDayTime(6000);
-        ServerPlayer player = helper.makeMockServerPlayerInLevel();
+        ServerPlayer player = testPlayer(helper);
         player.setPos(Vec3.atBottomCenterOf(helper.absolutePos(new BlockPos(2, 1, 2))));
         equip(player, EquipmentSlot.CHEST, MPSItems.POWER_ARMOR_CHESTPLATE_4.get(), new ItemStack(NuminaItems.BATTERY_1.get()));
         equip(player, EquipmentSlot.HEAD, MPSItems.POWER_ARMOR_HELMET_4.get(), new ItemStack(MPSItems.SOLAR_GENERATOR_MODULE_1.get()));
@@ -130,9 +134,8 @@ public class MPSGameTests {
             helper.setBlock(pos, Blocks.IRON_ORE);
         }
 
-        // survival player (the mock player is forced creative, and creative vein mining stops after one block)
-        ServerPlayer player = FakePlayerFactory.get(helper.getLevel(), new GameProfile(UUID.randomUUID(), "mps-gametest"));
-        player.setPos(Vec3.atBottomCenterOf(helper.absolutePos(new BlockPos(2, 1, 1))));
+        // survival player (creative vein mining stops after one block)
+        ServerPlayer player = testPlayer(helper);
         equip(player, EquipmentSlot.CHEST, MPSItems.POWER_ARMOR_CHESTPLATE_4.get(), new ItemStack(NuminaItems.BATTERY_4.get()));
         ElectricItemUtils.givePlayerEnergy(player, ElectricItemUtils.getMaxPlayerEnergy(player), false);
         ItemStack fist = install(new ItemStack(MPSItems.POWER_FIST_4.get()),
@@ -160,6 +163,49 @@ public class MPSGameTests {
         helper.succeed();
     }
 
+    /** What any FE charger (Mekanism, AE2, Create addons...) does: fill and drain the armor through IEnergyStorage. */
+    @GameTest(template = TEMPLATE)
+    public static void externalChargerChargesArmor(GameTestHelper helper) {
+        ItemStack chest = install(new ItemStack(MPSItems.POWER_ARMOR_CHESTPLATE_4.get()), new ItemStack(NuminaItems.BATTERY_1.get()));
+        IEnergyStorage energy = chest.getCapability(Capabilities.EnergyStorage.ITEM);
+        helper.assertTrue(energy != null && energy.canReceive(), "armor exposes no chargeable energy storage");
+        helper.assertTrue(energy.receiveEnergy(5000, false) == 5000 && energy.getEnergyStored() == 5000, "charger energy not stored: " + energy.getEnergyStored());
+        helper.assertTrue(energy.extractEnergy(1000, false) == 1000 && energy.getEnergyStored() == 4000, "energy not extractable");
+
+        ItemStack empty = new ItemStack(MPSItems.POWER_ARMOR_CHESTPLATE_4.get());
+        IEnergyStorage noBattery = empty.getCapability(Capabilities.EnergyStorage.ITEM);
+        helper.assertTrue(noBattery == null || noBattery.receiveEnergy(5000, false) == 0, "armor without a battery swallowed charger energy");
+        helper.succeed();
+    }
+
+    /** Generated recipes made it into the jar and loaded (datagen output is not tracked in git). */
+    @GameTest(template = TEMPLATE)
+    public static void generatorRecipesLoaded(GameTestHelper helper) {
+        for (String id : new String[]{"generator_combustion1", "generator_kinetic1", "generator_kinetic4_smithing_upgrade", "generator_solar1", "generator_thermal1", "coolant_tank1"}) {
+            helper.assertTrue(helper.getLevel().getRecipeManager().byKey(ResourceLocation.fromNamespaceAndPath(MPSConstants.MOD_ID, id)).isPresent(), "missing recipe powersuits:" + id);
+        }
+        helper.succeed();
+    }
+
+    /** With Mekanism installed, power armor shields against its radiation (Phase 2 compat). Passes trivially without Mekanism. */
+    @GameTest(template = TEMPLATE)
+    public static void mekanismRadiationShielding(GameTestHelper helper) {
+        if (ModList.get().isLoaded("mekanism")) {
+            MekanismChecks.armorShields(helper);
+        }
+        helper.succeed();
+    }
+
+    /** Only class-loaded when Mekanism is present. */
+    static class MekanismChecks {
+        static void armorShields(GameTestHelper helper) {
+            var capability = net.neoforged.neoforge.capabilities.ItemCapability.createVoid(
+                ResourceLocation.fromNamespaceAndPath("mekanism", "radiation_shielding"), mekanism.api.radiation.capability.IRadiationShielding.class);
+            var shielding = new ItemStack(MPSItems.POWER_ARMOR_CHESTPLATE_4.get()).getCapability(capability);
+            helper.assertTrue(shielding != null && shielding.getRadiationShielding() > 0, "power armor has no Mekanism radiation shielding");
+        }
+    }
+
     // stands in for a claim mod during veinMinerRespectsProtection
     @Nullable
     static BlockPos protectedPos;
@@ -172,6 +218,16 @@ public class MPSGameTests {
     }
 
     // helpers ---------------------------------------------------------------------------------------------------------
+    /**
+     * A survival fake player inside the test area. Not makeMockServerPlayerInLevel(): that one is forced creative and
+     * goes through the login event, where other mods in a full pack send it packets it can't receive.
+     */
+    static ServerPlayer testPlayer(GameTestHelper helper) {
+        ServerPlayer player = FakePlayerFactory.get(helper.getLevel(), new GameProfile(UUID.randomUUID(), "mps-gametest"));
+        player.setPos(Vec3.atBottomCenterOf(helper.absolutePos(new BlockPos(2, 1, 1))));
+        return player;
+    }
+
     static void equip(Player player, EquipmentSlot slot, Item host, ItemStack... modules) {
         player.setItemSlot(slot, install(new ItemStack(host), modules));
     }
