@@ -1,5 +1,6 @@
 package lehjr.powersuits.common.entity;
 
+import lehjr.powersuits.common.config.module.WeaponModuleConfig;
 import lehjr.powersuits.common.registration.MPSEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -129,7 +130,8 @@ public class PlasmaBallEntity extends ThrowableProjectile implements IEntityWith
                 break;
         }
         if (!this.level().isClientSide) { // Dist.SERVER
-            boolean flag = this.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+            // Block damage needs both the gamerule and the server config; entities are always affected either way.
+            boolean flag = WeaponModuleConfig.plasmaCannonExplosionsDestroyBlocks && this.level().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
             // FIXME: this is probably all wrong
             this.level().explode(this, this.getX(), this.getY(), this.getZ(), 3 * this.entityData.get(EXPLOSIVENESS), flag ? Level.ExplosionInteraction.TNT : Level.ExplosionInteraction.NONE);
         }

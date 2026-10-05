@@ -39,6 +39,10 @@ public class WeaponModuleConfig {
     private static final ModConfigSpec.DoubleValue PLASMA_CANNON__EXPLOSIVENESS_VOLTAGE_MULTIPLIER = PLASMA_CANNON_MODULE__SETTINGS_BUILDER.defineInRange(MPSConstants.PLASMA_CANNON_EXPLOSIVENESS_VOLTAGE_MULTIPLIER, 0.5, 0, 100000.0D);
 
     // RailGun
+    private static final ModConfigSpec.BooleanValue PLASMA_CANNON__EXPLOSIONS_DESTROY_BLOCKS = PLASMA_CANNON_MODULE__SETTINGS_BUILDER
+        .comment("When true, plasma explosions break blocks (still only if the mobGriefing gamerule is on). When false they only hurt and knock back entities.")
+        .define("explosionsDestroyBlocks", false);
+
     private static final ModConfigSpec.Builder RAILGUN_MODULE__SETTINGS_BUILDER = PLASMA_CANNON_MODULE__SETTINGS_BUILDER.pop().push("Railgun");
     private static final ModConfigSpec.BooleanValue RAILGUN_MODULE__IS_ALLOWED = RAILGUN_MODULE__SETTINGS_BUILDER.define(NuminaConstants.CONFIG_IS_ALLOWED, true);
     private static final ModConfigSpec.DoubleValue RAILGUN_MODULE__TOTAL_IMPULSE_BASE= RAILGUN_MODULE__SETTINGS_BUILDER.defineInRange(MPSConstants.TOTAL_IMPULSE_BASE, 500, 0, 100000.0D);
@@ -84,6 +88,7 @@ public class WeaponModuleConfig {
     public static double plasmaCannonDamageAtFullChargeBase;
     public static double plasmaCannonDamageAtFullChargeAmperageMultiplier;
     public static double plasmaCannonExplosivenessVoltageMultiplier;
+    public static boolean plasmaCannonExplosionsDestroyBlocks;
 
     // Railgun
     public static boolean railgunIsAllowed;
@@ -123,6 +128,7 @@ public class WeaponModuleConfig {
             plasmaCannonDamageAtFullChargeBase = PLASMA_CANNON__DAMAGE_AT_FULL_CHARGE_BASE.get();
             plasmaCannonDamageAtFullChargeAmperageMultiplier = PLASMA_CANNON__DAMAGE_AT_FULL_CHARGE_AMPERAGE_MULTIPLIER.get();
             plasmaCannonExplosivenessVoltageMultiplier = PLASMA_CANNON__EXPLOSIVENESS_VOLTAGE_MULTIPLIER.get();
+            plasmaCannonExplosionsDestroyBlocks = PLASMA_CANNON__EXPLOSIONS_DESTROY_BLOCKS.get();
 
             // Railgun
             railgunIsAllowed = RAILGUN_MODULE__IS_ALLOWED.get();
