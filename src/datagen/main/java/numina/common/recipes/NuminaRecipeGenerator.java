@@ -1,5 +1,6 @@
 package numina.common.recipes;
 
+import lehjr.numina.common.constants.NuminaConstants;
 import lehjr.numina.common.registration.NuminaItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -8,13 +9,23 @@ import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ICondition;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
 
 import javax.annotation.Nonnull;
 import java.util.concurrent.CompletableFuture;
 
 public class NuminaRecipeGenerator extends RecipeProvider {
+    /** Mekanism is part of the Voltz pack tech tree; its circuits replace the vanilla-material control circuit recipes. */
+    private static final ICondition MEKANISM_LOADED = new ModLoadedCondition("mekanism");
 
     public NuminaRecipeGenerator(PackOutput pOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
         super(pOutput, pRegistries);
@@ -202,7 +213,7 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .define('E', Tags.Items.INGOTS_COPPER)
             .define('O', Items.YELLOW_DYE)
             .unlockedBy(getHasName(NuminaItems.WIRING_COPPER.get()), has(NuminaItems.WIRING_COPPER.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.CONTROL_CIRCUIT_2.get())
             .pattern("WCW")
@@ -215,7 +226,7 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .define('G', Tags.Items.DUSTS_GLOWSTONE)
             .define('O', Items.RED_DYE)
             .unlockedBy(getHasName(NuminaItems.WIRING_COPPER.get()), has(NuminaItems.WIRING_COPPER.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.CONTROL_CIRCUIT_3.get())
             .pattern("WCW")
@@ -228,7 +239,7 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .define('G', Tags.Items.DUSTS_GLOWSTONE)
             .define('O', Items.BLUE_DYE)
             .unlockedBy(getHasName(NuminaItems.WIRING_GOLD.get()), has(NuminaItems.WIRING_GOLD.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.CONTROL_CIRCUIT_4.get())
             .pattern("WCW")
@@ -241,7 +252,16 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .define('G', Tags.Items.ENDER_PEARLS)
             .define('O', Items.PURPLE_DYE)
             .unlockedBy(getHasName(NuminaItems.WIRING_GOLD.get()), has(NuminaItems.WIRING_GOLD.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
+
+        // Mekanism variants (Voltz pack): the control circuits are built around Mekanism's circuit tiers so the
+        // whole progression runs through the pack's own tech tree. The vanilla-material recipes above are
+        // disabled while Mekanism is loaded so there is exactly one recipe per circuit.
+        RecipeOutput mekanismOutput = recipeOutput.withConditions(MEKANISM_LOADED);
+        mekanismControlCircuit(mekanismOutput, NuminaItems.CONTROL_CIRCUIT_1.get(), "basic", NuminaItems.CAPACITOR_1.get(), NuminaItems.WIRING_COPPER.get(), Tags.Items.DUSTS_REDSTONE, "component_control_circuit_1_mekanism");
+        mekanismControlCircuit(mekanismOutput, NuminaItems.CONTROL_CIRCUIT_2.get(), "advanced", NuminaItems.CAPACITOR_2.get(), NuminaItems.WIRING_COPPER.get(), Tags.Items.DUSTS_GLOWSTONE, "component_control_circuit_2_mekanism");
+        mekanismControlCircuit(mekanismOutput, NuminaItems.CONTROL_CIRCUIT_3.get(), "elite", NuminaItems.CAPACITOR_3.get(), NuminaItems.WIRING_GOLD.get(), Tags.Items.DUSTS_GLOWSTONE, "component_control_circuit_3_mekanism");
+        mekanismControlCircuit(mekanismOutput, NuminaItems.CONTROL_CIRCUIT_4.get(), "ultimate", NuminaItems.CAPACITOR_4.get(), NuminaItems.WIRING_GOLD.get(), Tags.Items.ENDER_PEARLS, "component_control_circuit_4_mekanism");
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.FIELD_EMITTER.get())
             .pattern("SES")
@@ -394,5 +414,24 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .define('R', Tags.Items.DUSTS_REDSTONE)
             .unlockedBy(getHasName(Items.GOLD_INGOT), has(Tags.Items.INGOTS_GOLD))
             .save(recipeOutput);
+    }
+
+    /**
+     * Control circuit built around a Mekanism circuit of the given tier ({@code c:circuits/<tier>}).
+     * Layout: wiring on the corners and bottom edge, capacitor on top, circuit in the middle,
+     * with a dust flanking it.
+     */
+    private void mekanismControlCircuit(RecipeOutput output, ItemLike result, String tier, ItemLike capacitor, ItemLike wiring, TagKey<Item> dust, String name) {
+        TagKey<Item> circuit = ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "circuits/" + tier));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+            .pattern("WCW")
+            .pattern("DMD")
+            .pattern("WWW")
+            .define('W', wiring)
+            .define('C', capacitor)
+            .define('D', dust)
+            .define('M', circuit)
+            .unlockedBy("has_mekanism_circuit_" + tier, has(circuit))
+            .save(output, ResourceLocation.fromNamespaceAndPath(NuminaConstants.MOD_ID, name));
     }
 }
