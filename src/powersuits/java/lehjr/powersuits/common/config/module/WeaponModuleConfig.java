@@ -15,7 +15,7 @@ public class WeaponModuleConfig {
     // Lightning Summoner
     private static final ModConfigSpec.Builder LIGHTNING_SUMMONER_MODULE__SETTINGS_BUILDER = BLADE_LAUNCHER_MODULE__SETTINGS_BUILDER.pop().push("Lightning_Summoner_Launcher");
     private static final ModConfigSpec.BooleanValue LIGHTNING_SUMMONER_MODULE__IS_ALLOWED = LIGHTNING_SUMMONER_MODULE__SETTINGS_BUILDER.define(NuminaConstants.CONFIG_IS_ALLOWED, true);
-    private static final ModConfigSpec.DoubleValue LIGHTNING_SUMMONER__ENERGY_CONSUMPTION_BASE = LIGHTNING_SUMMONER_MODULE__SETTINGS_BUILDER.defineInRange(MPSConstants.ENERGY_CONSUMPTION_BASE, 4900000.0, 0, 100000.0D);
+    private static final ModConfigSpec.DoubleValue LIGHTNING_SUMMONER__ENERGY_CONSUMPTION_BASE = LIGHTNING_SUMMONER_MODULE__SETTINGS_BUILDER.defineInRange(MPSConstants.ENERGY_CONSUMPTION_BASE, 4900000.0, 0, 10000000.0D);
     private static final ModConfigSpec.DoubleValue LIGHTNING_SUMMONER__HEAT_EMISSION = LIGHTNING_SUMMONER_MODULE__SETTINGS_BUILDER.defineInRange(MPSConstants.HEAT_EMISSION, 100, 0, 100000.0D);
 
     // Melee Assist
