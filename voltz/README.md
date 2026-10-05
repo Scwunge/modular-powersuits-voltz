@@ -32,12 +32,9 @@ almostunified, Open Parties and Claims, ...). Private: nothing here is pushed or
 
 ## Dev builds
 
-`runData`, `runClient` and `runServer` need the upstream author's private `libs/` jars (`localRuntime "blank:..."`).
-On any other checkout use:
-
-    gradlew --init-script voltz/dev/skip-local-libs.init.gradle runData
-
-House limits: `-Xmx2G`, 2 workers, no daemon, BelowNormal priority.
+Upstream's `build.gradle` skips the author's private `libs/` jars when that folder is absent and takes JEI from maven, so
+`gradlew runData` etc. work on a fresh checkout. House limits: `-Xmx2G`, 2 workers, no daemon, BelowNormal priority
+(`tools/gradle-low.cmd` in the repo root does this).
 
 ## Still to do (waiting on Phase 1)
 
