@@ -58,34 +58,41 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .pattern("WCW")
             .pattern("WWW")
             .define('W', NuminaItems.WIRING_COPPER.get())
-            .define('I', Items.IRON_INGOT)
+            .define('I', Tags.Items.INGOTS_IRON)
             .define('C', NuminaItems.CONTROL_CIRCUIT_2.get())
             .unlockedBy(getHasName(Items.IRON_INGOT), has(Items.IRON_INGOT))
             .unlockedBy(getHasName(NuminaItems.WIRING_COPPER.get()), has(NuminaItems.WIRING_COPPER.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get())
             .pattern("WIW")
             .pattern("WCW")
             .pattern("WWW")
             .define('W', NuminaItems.WIRING_GOLD.get())
-            .define('I', Items.GOLD_INGOT)
+            .define('I', Tags.Items.INGOTS_GOLD)
             .define('C', NuminaItems.CONTROL_CIRCUIT_3.get())
             .unlockedBy(getHasName(Items.GOLD_INGOT), has(Items.GOLD_INGOT))
             .unlockedBy(getHasName(NuminaItems.WIRING_GOLD.get()), has(NuminaItems.WIRING_GOLD.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get())
             .pattern("WIW")
             .pattern("WCW")
             .pattern("WWW")
             .define('W', NuminaItems.WIRING_GOLD.get())
-            .define('I', Items.NETHERITE_INGOT)
+            .define('I', Tags.Items.INGOTS_NETHERITE)
             .define('C', NuminaItems.CONTROL_CIRCUIT_4.get())
             .unlockedBy(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
             .unlockedBy(getHasName(NuminaItems.WIRING_GOLD.get()), has(NuminaItems.WIRING_GOLD.get()))
-            .save(recipeOutput);
+            .save(recipeOutput.withConditions(new NotCondition(MEKANISM_LOADED)));
 
+
+        // Mekanism variants (Voltz pack): the tier upgrade templates take the matching Mekanism alloy, in step with the
+        // Mekanism circuit used by the control circuit of the same tier. The originals above are off while Mekanism is loaded.
+        RecipeOutput mekanismTemplates = recipeOutput.withConditions(MEKANISM_LOADED);
+        mekanismUpgradeTemplate(mekanismTemplates, NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get(), "advanced", NuminaItems.WIRING_COPPER.get(), NuminaItems.CONTROL_CIRCUIT_2.get(), "tier_2_smithing_upgrade_template_mekanism");
+        mekanismUpgradeTemplate(mekanismTemplates, NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get(), "elite", NuminaItems.WIRING_GOLD.get(), NuminaItems.CONTROL_CIRCUIT_3.get(), "tier_3_smithing_upgrade_template_mekanism");
+        mekanismUpgradeTemplate(mekanismTemplates, NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get(), "ultimate", NuminaItems.WIRING_GOLD.get(), NuminaItems.CONTROL_CIRCUIT_4.get(), "tier_4_smithing_upgrade_template_mekanism");
 
         // Modules ------------------------------------------------------------------------------------
         // Energy Storage
@@ -414,6 +421,23 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .define('R', Tags.Items.DUSTS_REDSTONE)
             .unlockedBy(getHasName(Items.GOLD_INGOT), has(Tags.Items.INGOTS_GOLD))
             .save(recipeOutput);
+    }
+
+    /**
+     * Tier upgrade template built around a Mekanism alloy of the given tier ({@code c:alloys/<tier>}); same layout as
+     * the vanilla-material template.
+     */
+    private void mekanismUpgradeTemplate(RecipeOutput output, ItemLike result, String tier, ItemLike wiring, ItemLike controlCircuit, String name) {
+        TagKey<Item> alloy = ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "alloys/" + tier));
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+            .pattern("WAW")
+            .pattern("WCW")
+            .pattern("WWW")
+            .define('W', wiring)
+            .define('A', alloy)
+            .define('C', controlCircuit)
+            .unlockedBy("has_mekanism_alloy_" + tier, has(alloy))
+            .save(output, ResourceLocation.fromNamespaceAndPath(NuminaConstants.MOD_ID, name));
     }
 
     /**
