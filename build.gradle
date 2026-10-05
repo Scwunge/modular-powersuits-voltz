@@ -316,6 +316,10 @@ repositories {
 //        exclusiveRepo(handler, 'https://maven.blamejared.com', filter -> {
 //            filter.includeGroup('org.openzen.zencode')
 //        })
+        // Mekanism API (compile only, see dependencies)
+        exclusiveRepo(handler, 'https://modmaven.dev/', filter -> {
+            filter.includeGroup('mekanism')
+        })
         exclusiveRepo(handler, 'https://maven.blamejared.com', filter -> {
             filter.includeGroup('mezz.jei')
         })
@@ -329,6 +333,9 @@ repositories {
 dependencies {
     // JEI: compile against the API only; the full jar is only added to dev runs. Same version as the Voltz pack.
     compileOnly "mezz.jei:jei-1.21.1-neoforge-api:${jei_version}"
+    // Mekanism: compile against the API only. The real mod comes from the pack at runtime, and the code that touches it
+    // is guarded behind a ModList check (see lehjr.powersuits.common.compat).
+    compileOnly "mekanism:Mekanism:1.21.1-10.7.19.85:api"
     localRuntime "mezz.jei:jei-1.21.1-neoforge:${jei_version}"
 
     // The upstream author's private test mods in libs/; skipped when that folder isn't present
