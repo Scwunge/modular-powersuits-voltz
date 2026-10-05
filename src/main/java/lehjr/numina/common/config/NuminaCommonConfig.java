@@ -84,6 +84,10 @@ public class NuminaCommonConfig {
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
+        // values are already gone when Unloading fires; reading them would throw
+        if (event instanceof ModConfigEvent.Unloading) {
+            return;
+        }
         if (event.getConfig().getSpec() == COMMON_SPEC) {
             chargingBaseMaxEnergy = CHARGING_BASE_MAX_ENERGY.getAsInt();
             chargingBaseMaxTransfer = CHARGING_BASE_MAX_TRANSFER.getAsInt();

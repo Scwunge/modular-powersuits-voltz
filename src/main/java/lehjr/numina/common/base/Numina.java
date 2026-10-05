@@ -63,7 +63,8 @@ public class Numina {
 //        NeoForge.EVENT_BUS.register(this);
 
         modContainer.registerConfig(ModConfig.Type.CLIENT, NuminaClientConfig.CLIENT_SPEC, ConfigHelper.setupConfigFile("numina-client-only.toml", NuminaConstants.MOD_ID).getAbsolutePath());
-        modContainer.registerConfig(ModConfig.Type.COMMON, NuminaCommonConfig.COMMON_SPEC, ConfigHelper.setupConfigFile("numina-common.toml", NuminaConstants.MOD_ID).getAbsolutePath());
+        // SERVER so battery/charging values and keep-on-death come from the server and sync to clients (serverconfig/numina-server.toml)
+        modContainer.registerConfig(ModConfig.Type.SERVER, NuminaCommonConfig.COMMON_SPEC, NuminaConstants.MOD_ID + "-server.toml");
     }
 
     @SubscribeEvent

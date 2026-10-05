@@ -18,6 +18,10 @@ public class MPSCommonConfig {
 
     @SubscribeEvent
     public static void onLoad(final ModConfigEvent event) {
+        // values are already gone when Unloading fires; reading them would throw
+        if (event instanceof ModConfigEvent.Unloading) {
+            return;
+        }
         if (event.getConfig().getSpec() instanceof ModConfigSpec SPEC) {
             // this
             if (SPEC == MPS_GENERAL_SPEC) {

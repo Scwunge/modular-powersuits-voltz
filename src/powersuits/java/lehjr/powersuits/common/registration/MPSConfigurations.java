@@ -35,56 +35,53 @@ public class MPSConfigurations {
         registerClient(modContainer, MPSClientConfig.CLIENT_SPEC, "powersuits-client-only.toml");
 
         // General ----------------------------------------------------------------------------------------------------
-        registerCommon(modContainer, MPSCommonConfig.MPS_GENERAL_SPEC, "common/general.toml");
+        registerServer(modContainer, MPSCommonConfig.MPS_GENERAL_SPEC, "general.toml");
 
         // Armor ------------------------------------------------------------------------------------------------------
-        registerCommon(modContainer, ArmorConfig.ARMOR_CONFIG_SPEC, "common/items/armor.toml");
+        registerServer(modContainer, ArmorConfig.ARMOR_CONFIG_SPEC, "items/armor.toml");
 
         // PowerFist --------------------------------------------------------------------------------------------------
-        registerCommon(modContainer, PowerFistConfig.POWER_FIST_CONFIG_SPEC, "common/items/powerfist.toml");
+        registerServer(modContainer, PowerFistConfig.POWER_FIST_CONFIG_SPEC, "items/powerfist.toml");
 
         // Modules ----------------------------------------------------------------------------------------------------
         // Armor
-        registerCommon(modContainer, ArmorModuleConfig.ARMOR_MODULE_CONFIG_SPEC, "common/items/modules/armor.toml");
+        registerServer(modContainer, ArmorModuleConfig.ARMOR_MODULE_CONFIG_SPEC, "items/modules/armor.toml");
 
         // Cosmetic
-        registerCommon(modContainer, CosmeticModuleConfig.COSMETIC_MODULE_CONFIG_SPEC, "common/items/modules/cosmetic.toml");
-        // Energy Generation
-        // TODO!!
-
+        registerServer(modContainer, CosmeticModuleConfig.COSMETIC_MODULE_CONFIG_SPEC, "items/modules/cosmetic.toml");
         // Tool - Axe
-        registerCommon(modContainer, AxeModuleConfig.MPS_AXE_MODULE_SPEC, "common/items/modules/tool_axe.toml");
+        registerServer(modContainer, AxeModuleConfig.MPS_AXE_MODULE_SPEC, "items/modules/tool_axe.toml");
 
         // Energy Generation
-        registerCommon(modContainer, EnergyGenerationModuleConfig.MPS_GENERATOR_MODULE_SPEC, "common/items/modules/energy_generation.toml");
+        registerServer(modContainer, EnergyGenerationModuleConfig.MPS_GENERATOR_MODULE_SPEC, "items/modules/energy_generation.toml");
 
         // Environmental
-        registerCommon(modContainer, EnvironmentalModuleConfig.ENVIRONMENTAL_MODULE_SPEC, "common/items/modules/environmental.toml");
+        registerServer(modContainer, EnvironmentalModuleConfig.ENVIRONMENTAL_MODULE_SPEC, "items/modules/environmental.toml");
 
         // FLuid Storage
-        registerCommon(modContainer, FluidStorageConfig.FLUID_STORAGE_MODULE_SPEC, "common/items/modules/fluid_storage.toml");
+        registerServer(modContainer, FluidStorageConfig.FLUID_STORAGE_MODULE_SPEC, "items/modules/fluid_storage.toml");
 
         // Tool - Hoe
-        registerCommon(modContainer, HoeModuleConfig.MPS_HOE_MODULE_SPEC, "common/items/modules/tool_rototiller.toml");
+        registerServer(modContainer, HoeModuleConfig.MPS_HOE_MODULE_SPEC, "items/modules/tool_rototiller.toml");
 
         // Mining Enchantment
-        registerCommon(modContainer, MiningEnchantmentModuleConfig.MINING_ENCHANTMENT_MODULE_CONFIG_SPEC, "common/items/modules/mining_enchantment.toml");
+        registerServer(modContainer, MiningEnchantmentModuleConfig.MINING_ENCHANTMENT_MODULE_CONFIG_SPEC, "items/modules/mining_enchantment.toml");
 
         // Mining Enhancement
-        registerCommon(modContainer, MiningEnhancementModuleConfig.MINING_ENHANCEMENT_MODULE_SPEC, "common/items/modules/mining_enhancement.toml");
+        registerServer(modContainer, MiningEnhancementModuleConfig.MINING_ENHANCEMENT_MODULE_SPEC, "items/modules/mining_enhancement.toml");
 
         // Movement
-        registerCommon(modContainer, MovementModuleConfig.MPS_MOVEMENGT_MODULE_SPEC, "common/items/modules/movement.toml");
+        registerServer(modContainer, MovementModuleConfig.MPS_MOVEMENGT_MODULE_SPEC, "items/modules/movement.toml");
         // Tool - Pickaxe
-        registerCommon(modContainer, PickaxeModuleConfig.MPS_PICKAXE_MODULE_SPEC, "common/items/modules/tool_pickaxe.toml");
+        registerServer(modContainer, PickaxeModuleConfig.MPS_PICKAXE_MODULE_SPEC, "items/modules/tool_pickaxe.toml");
         // Tool - Shovel
-        registerCommon(modContainer, ShovelModuleConfig.MPS_SHOVEL_MODULE_SPEC, "common/items/modules/tool_shovels.toml");
+        registerServer(modContainer, ShovelModuleConfig.MPS_SHOVEL_MODULE_SPEC, "items/modules/tool_shovels.toml");
         // Tool -Misc
-        registerCommon(modContainer, ToolModuleConfig.MPS_TOOL_MODULE_SPEC, "common/items/modules/tool.toml");
+        registerServer(modContainer, ToolModuleConfig.MPS_TOOL_MODULE_SPEC, "items/modules/tool.toml");
         // Vision
-        registerCommon(modContainer, VisionModuleConfig.MPS_VISION_MODULE_SPEC, "common/items/modules/vision.toml");
+        registerServer(modContainer, VisionModuleConfig.MPS_VISION_MODULE_SPEC, "items/modules/vision.toml");
         // Weapon
-        registerCommon(modContainer, WeaponModuleConfig.MPS_WEAPON_MODULE_SPEC, "common/items/modules/weapon.toml");
+        registerServer(modContainer, WeaponModuleConfig.MPS_WEAPON_MODULE_SPEC, "items/modules/weapon.toml");
     }
 
     static void registerClient(ModContainer modContainer, ModConfigSpec spec, String path) {
@@ -95,8 +92,21 @@ public class MPSConfigurations {
         modContainer.registerConfig(ModConfig.Type.COMMON, spec, ConfigHelper.setupConfigFile(path ,MPSConstants.MOD_ID).getAbsolutePath());
     }
 
+    /**
+     * Gameplay values are SERVER configs so a server's settings are synced to every client (movement and module
+     * numbers are also used client side). They live per world in serverconfig/powersuits/; a pack can ship
+     * defaults in defaultconfigs/powersuits/.
+     */
+    static void registerServer(ModContainer modContainer, ModConfigSpec spec, String path) {
+        modContainer.registerConfig(ModConfig.Type.SERVER, spec, MPSConstants.MOD_ID + "/" + path);
+    }
+
     @SubscribeEvent
     public static void onLoad(final ModConfigEvent event) {
+        // values are already gone when Unloading fires (server stop, leaving a server); reading them would throw
+        if (event instanceof ModConfigEvent.Unloading) {
+            return;
+        }
         MPSCommonConfig.onLoad(event);
         // Modular Items
         ArmorConfig.onLoad(event);
