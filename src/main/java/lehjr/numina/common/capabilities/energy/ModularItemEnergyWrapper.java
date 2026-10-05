@@ -34,12 +34,15 @@ public class ModularItemEnergyWrapper implements IEnergyStorage {
 
                 if (recieved > 0) {
                     remaining -= recieved;
-                    cap.updateModuleInSlot(i, module);
+                    if (!simulate) {
+                        cap.updateModuleInSlot(i, module);
+                    }
                 }
             }
             return toReceive - remaining;
         }
-        return toReceive;
+        // No modular capability: nothing here can hold energy, so nothing is accepted.
+        return 0;
     }
 
     @Override
@@ -57,22 +60,29 @@ public class ModularItemEnergyWrapper implements IEnergyStorage {
                 }
                 if (extracted > 0) {
                     remaining -= extracted;
-                    cap.updateModuleInSlot(i, module);
+                    if (!simulate) {
+                        cap.updateModuleInSlot(i, module);
+                    }
                 }
             }
             return toExtract - remaining;
         }
-        return toExtract;
+        // No modular capability: there is no energy to extract.
+        return 0;
     }
 
+    /**
+     * Totals are summed as longs and clamped, since IEnergyStorage is int based and several large
+     * battery modules together can exceed Integer.MAX_VALUE (which would wrap negative for external chargers).
+     */
     @Override
     public int getEnergyStored() {
-        return getInternalEnergyStorage().stream().mapToInt(IEnergyStorage::getEnergyStored).sum();
+        return (int) Math.min(Integer.MAX_VALUE, getInternalEnergyStorage().stream().mapToLong(IEnergyStorage::getEnergyStored).sum());
     }
 
     @Override
     public int getMaxEnergyStored() {
-        return getInternalEnergyStorage().stream().mapToInt(IEnergyStorage::getMaxEnergyStored).sum();
+        return (int) Math.min(Integer.MAX_VALUE, getInternalEnergyStorage().stream().mapToLong(IEnergyStorage::getMaxEnergyStored).sum());
     }
 
     @Override
