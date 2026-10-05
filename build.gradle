@@ -262,12 +262,15 @@ neoForge {
             // logLevel = org.slf4j.event.Level.DEBUG
 
             sourceSet = sourceSets.runMain
+            // keep dev runs light (the machine is shared with games)
+            jvmArguments.addAll('-Xmx2G', '-Xms256M')
         }
         //Note: To enable logging into the client account, set the mc_devlogin property to true in your gradle user home
         // You can also run gradlew runClient -Pmc_devlogin=true
         client {
             client()
             gameDirectory.value(clientRunsFolder)
+            programArguments.addAll('--width', '854', '--height', '480')
             if (findProperty('mc_devlogin') ?: false) {
                 devLogin = true
             }
@@ -282,6 +285,12 @@ neoForge {
         server {
             server()
             gameDirectory.value(runsFolder.dir('server'))
+        }
+        // Headless dedicated-server boot + GameTests (NeoForge auto-accepts the EULA for gametest servers)
+        gameTestServer {
+            type = 'gameTestServer'
+            gameDirectory.value(runsFolder.dir('gametest'))
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'powersuits,numina'
         }
         data {
             data()
