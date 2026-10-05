@@ -43,6 +43,10 @@ public class MekanismCompatConfig {
     }
 
     public static void onLoad(final ModConfigEvent event) {
+        // values are already gone when Unloading fires; reading them would throw
+        if (event instanceof ModConfigEvent.Unloading) {
+            return;
+        }
         if (event.getConfig().getSpec() == MEKANISM_COMPAT_SPEC) {
             radiationShieldingEnabled = RADIATION_SHIELDING_ENABLED.get();
             tierShielding[0] = TIER_1_SHIELDING.get();
