@@ -20,7 +20,7 @@ public class ArmorConfig {
     private static final ModConfigSpec.DoubleValue HELM_3__MAX_HEAT = HELM_3__SETTINGS_BUILDER.defineInRange(NuminaConstants.MAXIMUM_HEAT, 10.0, 0, 1000.0D);
 
     private static final ModConfigSpec.Builder HELM_4__SETTINGS_BUILDER = HELM_3__SETTINGS_BUILDER.pop().push("Tier_4");
-    private static final ModConfigSpec.IntValue HELM_4__INVENTORY_SLOTS = HELM_4__SETTINGS_BUILDER.defineInRange(MPSConstants.CONFIG_INVENTORY_SLOTS, 12, 0, 10);
+    private static final ModConfigSpec.IntValue HELM_4__INVENTORY_SLOTS = HELM_4__SETTINGS_BUILDER.defineInRange(MPSConstants.CONFIG_INVENTORY_SLOTS, 12, 0, 20);
     private static final ModConfigSpec.DoubleValue HELMET_4__MAX_HEAT = HELM_4__SETTINGS_BUILDER.defineInRange(NuminaConstants.MAXIMUM_HEAT, 20.0, 0, 1000.0D);
 
     // ChestPlate -----------------------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ public class ArmorConfig {
     private static final ModConfigSpec.DoubleValue LEGGINGS_3__MAX_HEAT = LEGGINGS_3__SETTINGS_BUILDER.defineInRange(NuminaConstants.MAXIMUM_HEAT, 12.0, 0, 1000.0D);
 
     private static final ModConfigSpec.Builder LEGGINGS_4__SETTINGS_BUILDER = LEGGINGS_3__SETTINGS_BUILDER.pop().push("Tier_4");
-    private static final ModConfigSpec.IntValue LEGGINGS_4__INVENTORY_SLOTS = LEGGINGS_4__SETTINGS_BUILDER.defineInRange(MPSConstants.CONFIG_INVENTORY_SLOTS, 12, 0, 10);
+    private static final ModConfigSpec.IntValue LEGGINGS_4__INVENTORY_SLOTS = LEGGINGS_4__SETTINGS_BUILDER.defineInRange(MPSConstants.CONFIG_INVENTORY_SLOTS, 12, 0, 20);
     private static final ModConfigSpec.DoubleValue LEGGINGS_4__MAX_HEAT = LEGGINGS_4__SETTINGS_BUILDER.defineInRange(NuminaConstants.MAXIMUM_HEAT, 24.0, 0, 1000.0D);
 
     // Boots ----------------------------------------------------------------------------------------------------------
@@ -71,7 +71,7 @@ public class ArmorConfig {
     private static final ModConfigSpec.DoubleValue BOOTS_3__MAX_HEAT = BOOTS_3__SETTINGS_BUILDER.defineInRange(NuminaConstants.MAXIMUM_HEAT, 8.0, 0, 1000.0D);
 
     private static final ModConfigSpec.Builder BOOTS_4__SETTINGS_BUILDER = BOOTS_3__SETTINGS_BUILDER.pop().push("Tier_4");
-    private static final ModConfigSpec.IntValue BOOTS_4__INVENTORY_SLOTS = BOOTS_4__SETTINGS_BUILDER.defineInRange(MPSConstants.CONFIG_INVENTORY_SLOTS, 12, 0, 10);
+    private static final ModConfigSpec.IntValue BOOTS_4__INVENTORY_SLOTS = BOOTS_4__SETTINGS_BUILDER.defineInRange(MPSConstants.CONFIG_INVENTORY_SLOTS, 12, 0, 20);
     private static final ModConfigSpec.DoubleValue BOOTS_4__MAX_HEAT = BOOTS_4__SETTINGS_BUILDER.defineInRange(NuminaConstants.MAXIMUM_HEAT, 16.0, 0, 1000.0D);
 
     public static final ModConfigSpec ARMOR_CONFIG_SPEC = BOOTS_4__SETTINGS_BUILDER.build();

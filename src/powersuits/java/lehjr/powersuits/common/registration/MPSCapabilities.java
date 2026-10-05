@@ -201,32 +201,33 @@ public class MPSCapabilities {
 
         // Power Fist =================================================================================================
         // Mode Changing
-        if(PowerFistConfig.POWER_FIST_CONFIG_SPEC.isLoaded()) {
-            event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 1, PowerFistConfig.powerFistInventorySlots1), MPSItems.POWER_FIST_1.get());
-            event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 2, PowerFistConfig.powerFistInventorySlots2), MPSItems.POWER_FIST_2.get());
-            event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 3, PowerFistConfig.powerFistInventorySlots3), MPSItems.POWER_FIST_3.get());
-            event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 4, PowerFistConfig.powerFistInventorySlots4), MPSItems.POWER_FIST_4.get());
+        // Registered unconditionally: the config values are read when a capability is created, and the power fist
+        // config is a SERVER config that is not loaded yet while capabilities are registered.
+        event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 1, PowerFistConfig.powerFistInventorySlots1), MPSItems.POWER_FIST_1.get());
+        event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 2, PowerFistConfig.powerFistInventorySlots2), MPSItems.POWER_FIST_2.get());
+        event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 3, PowerFistConfig.powerFistInventorySlots3), MPSItems.POWER_FIST_3.get());
+        event.registerItem(NuminaCapabilities.Inventory.MODE_CHANGING_MODULAR_ITEM, (stack, context) -> new PowerFistModeChangingWrapper(stack, 4, PowerFistConfig.powerFistInventorySlots4), MPSItems.POWER_FIST_4.get());
 
-            // Energy
-            event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ModularItemEnergyWrapper(stack),
-                MPSItems.POWER_FIST_1.get(),
-                MPSItems.POWER_FIST_2.get(),
-                MPSItems.POWER_FIST_3.get(),
-                MPSItems.POWER_FIST_4.get());
+        // Energy
+        event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ModularItemEnergyWrapper(stack),
+            MPSItems.POWER_FIST_1.get(),
+            MPSItems.POWER_FIST_2.get(),
+            MPSItems.POWER_FIST_3.get(),
+            MPSItems.POWER_FIST_4.get());
 
-            // Heat
-            event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
-                new PowerFistHeatWrapper(stack, 1), MPSItems.POWER_FIST_1.get());
+        // Heat
+        event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
+            new PowerFistHeatWrapper(stack, 1), MPSItems.POWER_FIST_1.get());
 
-            event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
-                new PowerFistHeatWrapper(stack, 2), MPSItems.POWER_FIST_2.get());
+        event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
+            new PowerFistHeatWrapper(stack, 2), MPSItems.POWER_FIST_2.get());
 
-            event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
-                new PowerFistHeatWrapper(stack, 3), MPSItems.POWER_FIST_3.get());
+        event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
+            new PowerFistHeatWrapper(stack, 3), MPSItems.POWER_FIST_3.get());
 
-            event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
-                new PowerFistHeatWrapper(stack, 4), MPSItems.POWER_FIST_4.get());
-        }
+        event.registerItem(NuminaCapabilities.HEAT, (stack, context) ->
+            new PowerFistHeatWrapper(stack, 4), MPSItems.POWER_FIST_4.get());
+
 
 
 
