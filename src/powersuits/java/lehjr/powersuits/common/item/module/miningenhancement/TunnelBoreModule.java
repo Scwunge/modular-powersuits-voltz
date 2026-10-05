@@ -1,6 +1,7 @@
 package lehjr.powersuits.common.item.module.miningenhancement;
 
 import com.google.common.util.concurrent.AtomicDouble;
+import lehjr.numina.common.utils.BlockProtectionUtils;
 import lehjr.numina.common.capabilities.inventory.modechanging.IModeChangingItem;
 import lehjr.numina.common.capabilities.module.blockbreaking.IBlockBreakingModule;
 import lehjr.numina.common.capabilities.module.enhancement.MiningEnhancement;
@@ -98,8 +99,9 @@ public class TunnelBoreModule extends AbstractPowerModule {
                 for (Map.Entry<IHighlight.BlockPostionData, Integer> entry : getBlockPositions(itemStack, hitResult, player, level, modules, playerEnergy).entrySet()) {
                     IHighlight.BlockPostionData blockPostionData = entry.getKey();
                     int miningLevel = entry.getValue();
-                    if (blockPostionData.canHarvest()) {
-                        BlockPos blockPos = blockPostionData.pos().immutable();
+                    BlockPos blockPos = blockPostionData.pos().immutable();
+                    // the clicked block already went through the break event; ask protection mods about the rest
+                    if (blockPostionData.canHarvest() && (blockPos.equals(hitResult.getBlockPos()) || BlockProtectionUtils.canPlayerBreak(level, player, blockPos))) {
                         BlockState state = level.getBlockState(blockPos);
                         BlockEntity blockEntity = level.getBlockEntity(blockPos);
                         // setup drops checking for enchantments

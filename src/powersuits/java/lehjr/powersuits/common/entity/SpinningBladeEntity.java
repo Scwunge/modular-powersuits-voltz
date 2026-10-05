@@ -1,5 +1,6 @@
 package lehjr.powersuits.common.entity;
 
+import lehjr.numina.common.utils.BlockProtectionUtils;
 import lehjr.numina.common.capabilities.inventory.modechanging.IModeChangingItem;
 import lehjr.numina.common.capabilities.module.powermodule.IPowerModule;
 import lehjr.numina.common.registration.NuminaCapabilities;
@@ -104,7 +105,12 @@ public class SpinningBladeEntity extends ThrowableProjectile {
 
             BlockHitResult result = (BlockHitResult) hitResult;
             Block block = world.getBlockState(result.getBlockPos()).getBlock();
-            if (block instanceof IShearable && this.getOwner() instanceof Player) {
+            if (block instanceof IShearable && this.getOwner() instanceof Player owner) {
+                // respect claims/protection: the blade cuts blocks on its owner's behalf
+                if (!world.isClientSide && !BlockProtectionUtils.canPlayerBreak(world, owner, result.getBlockPos())) {
+                    this.discard();
+                    return;
+                }
                 IShearable target = (IShearable) block;
                 if (target.isShearable((Player)getOwner(), this.shootingItem, world, result.getBlockPos()) && !world.isClientSide) {
                     // onSheared(@Nullable Player player, @Nonnull ItemStack item, Level world, BlockPos pos, int fortune)
