@@ -339,7 +339,8 @@ public class NuminaRecipeGenerator extends RecipeProvider {
             .pattern("NN")
             .define('W', NuminaItems.WIRING_COPPER.get())
             .define('N', Tags.Items.INGOTS_NETHERITE)
-            .unlockedBy(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT));
+            .unlockedBy(getHasName(Items.NETHERITE_INGOT), has(Items.NETHERITE_INGOT))
+            .save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, NuminaItems.RUBBER_HOSE.get())
             .pattern("WWW")
