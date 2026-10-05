@@ -316,6 +316,9 @@ repositories {
 //        exclusiveRepo(handler, 'https://maven.blamejared.com', filter -> {
 //            filter.includeGroup('org.openzen.zencode')
 //        })
+        exclusiveRepo(handler, 'https://maven.blamejared.com', filter -> {
+            filter.includeGroup('mezz.jei')
+        })
         gradlePluginPortal()
         mavenLocal()
         flatDir {
@@ -324,27 +327,33 @@ repositories {
 }
 
 dependencies {
-    localRuntime("blank:appliedenergistics2-19.2.17")
-    localRuntime "blank:guideme-21.1.15"
-    localRuntime "blank:ae2jeiintegration-1.2.0"
+    // JEI: compile against the API only; the full jar is only added to dev runs. Same version as the Voltz pack.
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:${jei_version}"
+    localRuntime "mezz.jei:jei-1.21.1-neoforge:${jei_version}"
 
-    localRuntime "blank:FallingTree-1.21.1-1.21.1.11"
+    // The upstream author's private test mods in libs/; skipped when that folder isn't present
+    if (file("${project.rootDir}/libs").exists()) {
+        localRuntime("blank:appliedenergistics2-19.2.17")
+        localRuntime "blank:guideme-21.1.15"
+        localRuntime "blank:ae2jeiintegration-1.2.0"
 
-    implementation "blank:jei-1.21.1-neoforge-19.27.0.340"
-    localRuntime "blank:theoneprobe-1.21_neo-12.0.8" // try it?
+        localRuntime "blank:FallingTree-1.21.1-1.21.1.11"
 
-    localRuntime "blank:journeymap-neoforge-1.21.1-6.0.0-beta.53"
-    localRuntime "blank:cloth-config-15.0.140-neoforge"
-    localRuntime "blank:BuildingWands-neoforge-MC1.21.1-3.0.5"
+        localRuntime "blank:theoneprobe-1.21_neo-12.0.8" // try it?
+
+        localRuntime "blank:journeymap-neoforge-1.21.1-6.0.0-beta.53"
+        localRuntime "blank:cloth-config-15.0.140-neoforge"
+        localRuntime "blank:BuildingWands-neoforge-MC1.21.1-3.0.5"
 
 
-    localRuntime "blank:energizedpower-1.21.1-2.15.7-neoforge"
+        localRuntime "blank:energizedpower-1.21.1-2.15.7-neoforge"
 
-    localRuntime "blank:kotlinforforge-5.10.0-all"
+        localRuntime "blank:kotlinforforge-5.10.0-all"
 
-    localRuntime "blank:architectury-13.0.11-neoforge"
+        localRuntime "blank:architectury-13.0.11-neoforge"
 
-    localRuntime "blank:observable-5.4.4"
+        localRuntime "blank:observable-5.4.4"
+    }
 }
 
 def getManifestAttributes(String title) {
