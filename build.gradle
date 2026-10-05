@@ -271,6 +271,10 @@ neoForge {
             client()
             gameDirectory.value(clientRunsFolder)
             programArguments.addAll('--width', '854', '--height', '480')
+            // -PquickPlay=<world> joins a singleplayer world straight away (used for smoke tests)
+            if (findProperty('quickPlay')) {
+                programArguments.addAll('--quickPlaySingleplayer', (String) findProperty('quickPlay'))
+            }
             if (findProperty('mc_devlogin') ?: false) {
                 devLogin = true
             }
