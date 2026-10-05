@@ -431,6 +431,12 @@ public class MPSLanguageProvider_EN_US extends AbstractLangageProviderMPS {
 
         // Modular Item Inventory ----------------------------------------------------------------------
         add("gui." + MPSConstants.MOD_ID + ".modularitem.inventory", "Modular Item Inventory");
+
+        // JEI information pages ------------------------------------------------------------------------
+        add("jei." + MPSConstants.MOD_ID + ".info.tinker_table", "The Tinker Table is where Modular Powersuits gear is set up. Right-click it to install, salvage and tweak modules on power armor and power fists, and to change their colors and key bindings.");
+        add("jei." + MPSConstants.MOD_ID + ".info.charging_base", "Accepts Forge Energy (FE) from cables and machines from any mod and charges the Modular Powersuits gear of anything standing on it. The buffer size and charge rate can be changed in the Numina config.");
+        add("jei." + MPSConstants.MOD_ID + ".info.power_armor", "Modular power armor comes in four tiers; each tier is crafted by upgrading the piece from the tier below. Use the Tinker Table to install modules. Energy is stored by battery modules as Forge Energy (FE), so power armor can be charged by the chargers and cables of other mods as well as the Charging Base.");
+        add("jei." + MPSConstants.MOD_ID + ".info.power_fist", "The Power Fist is a modular tool that holds mining, tool and weapon modules and switches between them. Like the power armor, its battery modules store Forge Energy (FE) and can be charged with the chargers of other mods.");
     }
 
     @Override
