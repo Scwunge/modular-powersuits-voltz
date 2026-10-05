@@ -218,6 +218,18 @@ public class MPSItemModelProvider extends AbstractItemModelProvider {
         this.basicItem(MPSItems.SOLAR_GENERATOR_MODULE_3.get(), "item/module/energy/generation/generator.solar3");
         this.basicItem(MPSItems.SOLAR_GENERATOR_MODULE_4.get(), "item/module/energy/generation/generator.solar4");
 
+        // Combustion
+        this.basicItem(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get(), "item/module/energy/generation/combustiongenerator1");
+        this.basicItem(MPSItems.COMBUSTION_GENERATOR_MODULE_2.get(), "item/module/energy/generation/combustiongenerator2");
+        this.basicItem(MPSItems.COMBUSTION_GENERATOR_MODULE_3.get(), "item/module/energy/generation/combustiongenerator3");
+        this.basicItem(MPSItems.COMBUSTION_GENERATOR_MODULE_4.get(), "item/module/energy/generation/combustiongenerator4");
+
+        // Kinetic
+        this.basicItem(MPSItems.KINETIC_GENERATOR_MODULE_1.get(), "item/module/energy/generation/kineticgenerator1");
+        this.basicItem(MPSItems.KINETIC_GENERATOR_MODULE_2.get(), "item/module/energy/generation/kineticgenerator2");
+        this.basicItem(MPSItems.KINETIC_GENERATOR_MODULE_3.get(), "item/module/energy/generation/kineticgenerator3");
+        this.basicItem(MPSItems.KINETIC_GENERATOR_MODULE_4.get(), "item/module/energy/generation/kineticgenerator4");
+
         // Environmental --------------------------------------
         this.basicItem(MPSItems.ACTIVE_CAMOUFLAGE_MODULE.get(), "item/module/environmental/invisibility");
         this.basicItem(MPSItems.AUTO_FEEDER_MODULE.get(), "item/module/environmental/auto_feeder");

@@ -22,7 +22,7 @@ public class FortuneModule extends AbstractPowerModule {
         boolean removed;
         public TickingEnchantment(@Nonnull ItemStack module) {
             super(module, ModuleCategory.MINING_ENCHANTMENT, ModuleTarget.TOOLONLY);
-            addBaseProperty(MPSConstants.ENERGY_CONSUMPTION, 500, "FE");
+            addBaseProperty(MPSConstants.ENERGY_CONSUMPTION, MiningEnchantmentModuleConfig.fortuneModuleEnergyConsumptionBase, "FE");
             addTradeoffProperty(MPSConstants.ENCHANTMENT_LEVEL, MPSConstants.ENERGY_CONSUMPTION, MiningEnchantmentModuleConfig.fortuneModuleEnergyConsumptionEnchantmentMultiplier);
             addIntTradeoffProperty(MPSConstants.ENCHANTMENT_LEVEL, MPSConstants.FORTUNE_ENCHANTMENT_LEVEL, 3, "", 1, 1);
 

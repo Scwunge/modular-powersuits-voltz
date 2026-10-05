@@ -189,6 +189,10 @@ public class MPSConstants {
     public static final String PUNCH_KNOCKBACK_CARRY_THROUGH_MULTIPLIER = PUNCH_KNOCKBACK + CARRY_THROUGH + MULTIPLIER;
     public static final String PUNCH_DAMAGE_IMPACT_MULTIPLIER = PUNCH_DAMAGE + IMPACT + MULTIPLIER;
 
+    // Combustion Generator
+    public static final String FUEL_BURN_RATE = "fuelBurnRate";
+    public static final String FUEL_TICKS_REMAINING = "fuelTicksRemaining";
+
     // Plasma Cannon
     public static final String AMPERAGE = "amperage";
     public static final String CREEPER = "creeper";

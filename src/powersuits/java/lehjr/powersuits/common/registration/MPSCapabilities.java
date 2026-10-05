@@ -19,7 +19,9 @@ import lehjr.powersuits.common.config.PowerFistConfig;
 import lehjr.powersuits.common.item.module.armor.ArmorPlatingModule;
 import lehjr.powersuits.common.item.module.armor.EnergyShieldModule;
 import lehjr.powersuits.common.item.module.cosmetic.TransparentArmorModule;
+import lehjr.powersuits.common.item.module.energygeneration.combustion.CombustionGeneratorModule;
 import lehjr.powersuits.common.item.module.energygeneration.heat.ThermalGeneratorModule;
+import lehjr.powersuits.common.item.module.energygeneration.kinetic.KineticGeneratorModule;
 import lehjr.powersuits.common.item.module.energygeneration.solar.SolarGeneratorModule;
 import lehjr.powersuits.common.item.module.environmental.ActiveCamouflageModule;
 import lehjr.powersuits.common.item.module.environmental.AutoFeederModule;
@@ -262,6 +264,18 @@ public class MPSCapabilities {
         event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new SolarGeneratorModule.SolarGeneratorTickingCapability(stack, 2), MPSItems.SOLAR_GENERATOR_MODULE_2.get());
         event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new SolarGeneratorModule.SolarGeneratorTickingCapability(stack, 3), MPSItems.SOLAR_GENERATOR_MODULE_3.get());
         event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new SolarGeneratorModule.SolarGeneratorTickingCapability(stack, 4), MPSItems.SOLAR_GENERATOR_MODULE_4.get());
+
+        // Combustion
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new CombustionGeneratorModule.CombustionGeneratorTickingCapability(stack, 1), MPSItems.COMBUSTION_GENERATOR_MODULE_1.get());
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new CombustionGeneratorModule.CombustionGeneratorTickingCapability(stack, 2), MPSItems.COMBUSTION_GENERATOR_MODULE_2.get());
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new CombustionGeneratorModule.CombustionGeneratorTickingCapability(stack, 3), MPSItems.COMBUSTION_GENERATOR_MODULE_3.get());
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new CombustionGeneratorModule.CombustionGeneratorTickingCapability(stack, 4), MPSItems.COMBUSTION_GENERATOR_MODULE_4.get());
+
+        // Kinetic
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new KineticGeneratorModule.KineticGeneratorTickingCapability(stack, 1), MPSItems.KINETIC_GENERATOR_MODULE_1.get());
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new KineticGeneratorModule.KineticGeneratorTickingCapability(stack, 2), MPSItems.KINETIC_GENERATOR_MODULE_2.get());
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new KineticGeneratorModule.KineticGeneratorTickingCapability(stack, 3), MPSItems.KINETIC_GENERATOR_MODULE_3.get());
+        event.registerItem(NuminaCapabilities.Module.POWER_MODULE, (stack, ctx) -> new KineticGeneratorModule.KineticGeneratorTickingCapability(stack, 4), MPSItems.KINETIC_GENERATOR_MODULE_4.get());
 
 
         // Environmental ----------------------------------------------------------------------------------------------

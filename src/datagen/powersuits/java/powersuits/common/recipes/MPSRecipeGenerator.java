@@ -475,7 +475,7 @@ public class MPSRecipeGenerator extends RecipeProvider {
             .save(output);
 
         SmithingUpgradeRecipeBuilder.smithing(
-                Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.THERMAL_GENERATOR_MODULE_3.get()),
                 SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 4),
                 RecipeCategory.TOOLS,
@@ -514,11 +514,90 @@ public class MPSRecipeGenerator extends RecipeProvider {
             .save(output);
 
         SmithingUpgradeRecipeBuilder.smithing(
-                Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
                 Ingredient.of(MPSItems.SOLAR_GENERATOR_MODULE_3.get()),
                 SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 4),
                 RecipeCategory.TOOLS,
                 MPSItems.SOLAR_GENERATOR_MODULE_4.get())
+            .unlockedBy(getHasName(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()))
+            .save(output);
+
+        // Combustion ----------------------------------------------------------------------------------
+        // Placeholder recipes (Phase 1); Voltz material rework is done in Phase 2
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MPSItems.COMBUSTION_GENERATOR_MODULE_1.get())
+            .pattern("IFI")
+            .pattern("WCW")
+            .pattern("IFI")
+            .define('I', NuminaItems.PLATING_IRON.get())
+            .define('F', Items.FURNACE)
+            .define('W', NuminaItems.WIRING_COPPER.get())
+            .define('C', NuminaItems.CONTROL_CIRCUIT_1.get())
+            .unlockedBy(getHasName(MPSItems.POWER_ARMOR_CHESTPLATE_1.get()), has(MPSItems.POWER_ARMOR_CHESTPLATE_1.get()))
+            .save(output);
+
+        SmithingUpgradeRecipeBuilder.smithing(
+                Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get()),
+                SizedIngredient.of(Items.GOLD_INGOT, 4),
+                RecipeCategory.TOOLS,
+                MPSItems.COMBUSTION_GENERATOR_MODULE_2.get())
+            .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
+            .save(output);
+
+        SmithingUpgradeRecipeBuilder.smithing(
+                Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(MPSItems.COMBUSTION_GENERATOR_MODULE_2.get()),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 4),
+                RecipeCategory.TOOLS,
+                MPSItems.COMBUSTION_GENERATOR_MODULE_3.get())
+            .unlockedBy(getHasName(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()))
+            .save(output);
+
+        SmithingUpgradeRecipeBuilder.smithing(
+                Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(MPSItems.COMBUSTION_GENERATOR_MODULE_3.get()),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 4),
+                RecipeCategory.TOOLS,
+                MPSItems.COMBUSTION_GENERATOR_MODULE_4.get())
+            .unlockedBy(getHasName(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()))
+            .save(output);
+
+        // Kinetic -------------------------------------------------------------------------------------
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, MPSItems.KINETIC_GENERATOR_MODULE_1.get())
+            .pattern("ISI")
+            .pattern("WCW")
+            .pattern("ISI")
+            .define('I', NuminaItems.PLATING_IRON.get())
+            .define('S', NuminaItems.SERVO.get())
+            .define('W', NuminaItems.WIRING_COPPER.get())
+            .define('C', NuminaItems.CONTROL_CIRCUIT_1.get())
+            .unlockedBy(getHasName(MPSItems.POWER_ARMOR_LEGGINGS_1.get()), has(MPSItems.POWER_ARMOR_LEGGINGS_1.get()))
+            .save(output);
+
+        SmithingUpgradeRecipeBuilder.smithing(
+                Ingredient.of(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(MPSItems.KINETIC_GENERATOR_MODULE_1.get()),
+                SizedIngredient.of(Items.GOLD_INGOT, 4),
+                RecipeCategory.TOOLS,
+                MPSItems.KINETIC_GENERATOR_MODULE_2.get())
+            .unlockedBy(getHasName(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_2_SMITHING_UPGRADE_TEMPLATE.get()))
+            .save(output);
+
+        SmithingUpgradeRecipeBuilder.smithing(
+                Ingredient.of(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(MPSItems.KINETIC_GENERATOR_MODULE_2.get()),
+                SizedIngredient.of(Tags.Items.GEMS_DIAMOND, 4),
+                RecipeCategory.TOOLS,
+                MPSItems.KINETIC_GENERATOR_MODULE_3.get())
+            .unlockedBy(getHasName(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_3_SMITHING_UPGRADE_TEMPLATE.get()))
+            .save(output);
+
+        SmithingUpgradeRecipeBuilder.smithing(
+                Ingredient.of(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()),
+                Ingredient.of(MPSItems.KINETIC_GENERATOR_MODULE_3.get()),
+                SizedIngredient.of(Tags.Items.INGOTS_NETHERITE, 4),
+                RecipeCategory.TOOLS,
+                MPSItems.KINETIC_GENERATOR_MODULE_4.get())
             .unlockedBy(getHasName(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()), has(NuminaItems.TIER_4_SMITHING_UPGRADE_TEMPLATE.get()))
             .save(output);
 

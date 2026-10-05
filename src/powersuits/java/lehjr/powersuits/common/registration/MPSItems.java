@@ -7,7 +7,9 @@ import lehjr.powersuits.common.item.electric.tool.PowerFist;
 import lehjr.powersuits.common.item.module.armor.ArmorPlatingModule;
 import lehjr.powersuits.common.item.module.armor.EnergyShieldModule;
 import lehjr.powersuits.common.item.module.cosmetic.TransparentArmorModule;
+import lehjr.powersuits.common.item.module.energygeneration.combustion.CombustionGeneratorModule;
 import lehjr.powersuits.common.item.module.energygeneration.heat.ThermalGeneratorModule;
+import lehjr.powersuits.common.item.module.energygeneration.kinetic.KineticGeneratorModule;
 import lehjr.powersuits.common.item.module.energygeneration.solar.SolarGeneratorModule;
 import lehjr.powersuits.common.item.module.environmental.ActiveCamouflageModule;
 import lehjr.powersuits.common.item.module.environmental.AutoFeederModule;
@@ -178,6 +180,18 @@ public class MPSItems {
     public static DeferredHolder<Item, SolarGeneratorModule> SOLAR_GENERATOR_MODULE_2 = MPS_ITEMS.register(MPSConstants.SOLAR_GENERATOR_MODULE_2.getPath(), SolarGeneratorModule::new);
     public static DeferredHolder<Item, SolarGeneratorModule> SOLAR_GENERATOR_MODULE_3 = MPS_ITEMS.register(MPSConstants.SOLAR_GENERATOR_MODULE_3.getPath(), SolarGeneratorModule::new);
     public static DeferredHolder<Item, SolarGeneratorModule> SOLAR_GENERATOR_MODULE_4 = MPS_ITEMS.register(MPSConstants.SOLAR_GENERATOR_MODULE_4.getPath(), SolarGeneratorModule::new);
+
+    // Combustion
+    public static DeferredHolder<Item, CombustionGeneratorModule> COMBUSTION_GENERATOR_MODULE_1 = MPS_ITEMS.register(MPSConstants.COMBUSTION_GENERATOR_MODULE_1.getPath(), CombustionGeneratorModule::new);
+    public static DeferredHolder<Item, CombustionGeneratorModule> COMBUSTION_GENERATOR_MODULE_2 = MPS_ITEMS.register(MPSConstants.COMBUSTION_GENERATOR_MODULE_2.getPath(), CombustionGeneratorModule::new);
+    public static DeferredHolder<Item, CombustionGeneratorModule> COMBUSTION_GENERATOR_MODULE_3 = MPS_ITEMS.register(MPSConstants.COMBUSTION_GENERATOR_MODULE_3.getPath(), CombustionGeneratorModule::new);
+    public static DeferredHolder<Item, CombustionGeneratorModule> COMBUSTION_GENERATOR_MODULE_4 = MPS_ITEMS.register(MPSConstants.COMBUSTION_GENERATOR_MODULE_4.getPath(), CombustionGeneratorModule::new);
+
+    // Kinetic
+    public static DeferredHolder<Item, KineticGeneratorModule> KINETIC_GENERATOR_MODULE_1 = MPS_ITEMS.register(MPSConstants.KINETIC_GENERATOR_MODULE_1.getPath(), KineticGeneratorModule::new);
+    public static DeferredHolder<Item, KineticGeneratorModule> KINETIC_GENERATOR_MODULE_2 = MPS_ITEMS.register(MPSConstants.KINETIC_GENERATOR_MODULE_2.getPath(), KineticGeneratorModule::new);
+    public static DeferredHolder<Item, KineticGeneratorModule> KINETIC_GENERATOR_MODULE_3 = MPS_ITEMS.register(MPSConstants.KINETIC_GENERATOR_MODULE_3.getPath(), KineticGeneratorModule::new);
+    public static DeferredHolder<Item, KineticGeneratorModule> KINETIC_GENERATOR_MODULE_4 = MPS_ITEMS.register(MPSConstants.KINETIC_GENERATOR_MODULE_4.getPath(), KineticGeneratorModule::new);
 
 
 
@@ -371,6 +385,14 @@ public class MPSItems {
                 output.accept(SOLAR_GENERATOR_MODULE_2.get());
                 output.accept(SOLAR_GENERATOR_MODULE_3.get());
                 output.accept(SOLAR_GENERATOR_MODULE_4.get());
+                output.accept(COMBUSTION_GENERATOR_MODULE_1.get());
+                output.accept(COMBUSTION_GENERATOR_MODULE_2.get());
+                output.accept(COMBUSTION_GENERATOR_MODULE_3.get());
+                output.accept(COMBUSTION_GENERATOR_MODULE_4.get());
+                output.accept(KINETIC_GENERATOR_MODULE_1.get());
+                output.accept(KINETIC_GENERATOR_MODULE_2.get());
+                output.accept(KINETIC_GENERATOR_MODULE_3.get());
+                output.accept(KINETIC_GENERATOR_MODULE_4.get());
 
 
 

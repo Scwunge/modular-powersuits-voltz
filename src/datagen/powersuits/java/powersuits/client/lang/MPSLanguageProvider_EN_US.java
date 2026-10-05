@@ -87,7 +87,7 @@ public class MPSLanguageProvider_EN_US extends AbstractLangageProviderMPS {
         add(MPSItems.SOLAR_GENERATOR_MODULE_2.get(), "Solar Generator 2");
         addItemDescriptions(MPSItems.SOLAR_GENERATOR_MODULE_2.get(), "Let the sun power your adventures.");
 
-        add(MPSItems.SOLAR_GENERATOR_MODULE_3.get(), "Solar Generator 4");
+        add(MPSItems.SOLAR_GENERATOR_MODULE_3.get(), "Solar Generator 3");
         addItemDescriptions(MPSItems.SOLAR_GENERATOR_MODULE_3.get(), "Let the sun power your adventures.");
 
         add(MPSItems.SOLAR_GENERATOR_MODULE_4.get(), "Solar Generator 4");
@@ -100,9 +100,31 @@ public class MPSLanguageProvider_EN_US extends AbstractLangageProviderMPS {
 //        addItemDescriptions(MPSItems.ADVANCED_SOLAR_GENERATOR_MODULE.get(), "A solar generator with 3 times the power generation of the standard solar generator.");
 
         // Kinetic Generator ---------------------------------------------------------------------------
-//        add(MPSItems.KINETIC_GENERATOR_MODULE.get(), "Kinetic Generator");
-//
-//        addItemDescriptions(MPSItems.KINETIC_GENERATOR_MODULE.get(), "Generate power with your movement.");
+        add(MPSItems.KINETIC_GENERATOR_MODULE_1.get(), "Kinetic Generator 1");
+        addItemDescriptions(MPSItems.KINETIC_GENERATOR_MODULE_1.get(), "Generate power by walking. Higher output makes you slower.");
+
+        add(MPSItems.KINETIC_GENERATOR_MODULE_2.get(), "Kinetic Generator 2");
+        addItemDescriptions(MPSItems.KINETIC_GENERATOR_MODULE_2.get(), "Generate power by walking. Higher output makes you slower.");
+
+        add(MPSItems.KINETIC_GENERATOR_MODULE_3.get(), "Kinetic Generator 3");
+        addItemDescriptions(MPSItems.KINETIC_GENERATOR_MODULE_3.get(), "Generate power by walking. Higher output makes you slower.");
+
+        add(MPSItems.KINETIC_GENERATOR_MODULE_4.get(), "Kinetic Generator 4");
+        addItemDescriptions(MPSItems.KINETIC_GENERATOR_MODULE_4.get(), "Generate power by walking. Higher output makes you slower.");
+
+        // Combustion Generator ------------------------------------------------------------------------
+        add(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get(), "Combustion Generator 1");
+        addItemDescriptions(MPSItems.COMBUSTION_GENERATOR_MODULE_1.get(), "Burns furnace fuel from your inventory to charge the suit while it isn't full. Produces heat.");
+
+        add(MPSItems.COMBUSTION_GENERATOR_MODULE_2.get(), "Combustion Generator 2");
+        addItemDescriptions(MPSItems.COMBUSTION_GENERATOR_MODULE_2.get(), "Burns furnace fuel from your inventory to charge the suit while it isn't full. Produces heat.");
+
+        add(MPSItems.COMBUSTION_GENERATOR_MODULE_3.get(), "Combustion Generator 3");
+        addItemDescriptions(MPSItems.COMBUSTION_GENERATOR_MODULE_3.get(), "Burns furnace fuel from your inventory to charge the suit while it isn't full. Produces heat.");
+
+        add(MPSItems.COMBUSTION_GENERATOR_MODULE_4.get(), "Combustion Generator 4");
+        addItemDescriptions(MPSItems.COMBUSTION_GENERATOR_MODULE_4.get(), "Burns furnace fuel from your inventory to charge the suit while it isn't full. Produces heat.");
+
 
         // Thermal Generator ---------------------------------------------------------------------------
         add(MPSItems.THERMAL_GENERATOR_MODULE_1.get(), "Thermal Generator 1");
@@ -478,13 +500,13 @@ public class MPSLanguageProvider_EN_US extends AbstractLangageProviderMPS {
         addTradeoff(MPSConstants.COMPENSATION, "Compensation");
 
 //        // Cooling Bonus -------------------------------------------------------------------------------
-//        addTradeoff(MPSConstants.COOLING_BONUS, "Cooling Bonus");
+
 //
 //        // Daytime Energy Generation -------------------------------------------------------------------
-//        addTradeoff(MPSConstants.ENERGY_GENERATION_DAY, "Daytime Energy Generation");
+        addTradeoff(MPSConstants.ENERGY_GENERATION_DAY, "Daytime Energy Generation");
 //
 //        // Daytime Heat Generation ---------------------------------------------------------------------
-//        addTradeoff(MPSConstants.HEAT_GENERATION_DAY, "Daytime Heat Generation");
+        addTradeoff(MPSConstants.HEAT_GENERATION_DAY, "Daytime Heat Generation");
 
         // Diameter ------------------------------------------------------------------------------------
         addTradeoff(MPSConstants.DIAMETER, "Diameter");
@@ -502,10 +524,10 @@ public class MPSLanguageProvider_EN_US extends AbstractLangageProviderMPS {
         addTradeoff(MPSConstants.ENERGY_CONSUMPTION, "Energy Consumption");
 //
 //        // Energy Generated ----------------------------------------------------------------------------
-//        addTradeoff(MPSConstants.ENERGY_GENERATED, "Energy Generated");
+        addTradeoff(MPSConstants.ENERGY_GENERATED, "Energy Generated");
 //
 //        // Energy Per Block Per Second -----------------------------------------------------------------
-//        addTradeoff(MPSConstants.ENERGY_GENERATION, "Energy Per Block Per Second");
+        addTradeoff(MPSConstants.ENERGY_GENERATION, "Energy Per Block Walked");
 
         // FOV multiplier ------------------------------------------------------------------------------
         addTradeoff(MPSConstants.FIELD_OF_VIEW, "FOV multiplier");
@@ -571,16 +593,20 @@ public class MPSLanguageProvider_EN_US extends AbstractLangageProviderMPS {
         addTradeoff(MPSConstants.PUNCH_KNOCKBACK, "Melee Knockback");
 
         // Movement Resistance -------------------------------------------------------------------------
-//        addTradeoff(MPSConstants.MOVEMENT_RESISTANCE, "Movement Resistance");
+        addTradeoff(NuminaConstants.MOVEMENT_RESISTANCE, "Movement Resistance");
 
         // Multiplier ----------------------------------------------------------------------------------
         addTradeoff(MPSConstants.MULTIPLIER, "Multiplier");
 
+        // Combustion Generator ------------------------------------------------------------------------
+        addTradeoff(MPSConstants.ENERGY_PER_TICK, "Energy Per Tick");
+        addTradeoff(MPSConstants.FUEL_BURN_RATE, "Fuel Burn Rate");
+
 //        // Nighttime Energy Generation -----------------------------------------------------------------
-//        addTradeoff(MPSConstants.ENERGY_GENERATION_NIGHT, "Nighttime Energy Generation");
+        addTradeoff(MPSConstants.ENERGY_GENERATION_NIGHT, "Nighttime Energy Generation");
 //
 //        // Nighttime Heat Generation -------------------------------------------------------------------
-//        addTradeoff(MPSConstants.HEAT_GENERATION_NIGHT, "Nighttime Heat Generation");
+        addTradeoff(MPSConstants.HEAT_GENERATION_NIGHT, "Nighttime Heat Generation");
 
         // Lux Capacitor Opacity -----------------------------------------------------------------------
         addTradeoff(MPSConstants.OPACITY, "Lux Capacitor Opacity");

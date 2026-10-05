@@ -145,8 +145,7 @@ public class ItemEvent {
                     ItemStack module = iModularItem.getStackInSlot(i);
                     IPowerModule iPowerModule = iModularItem.getModuleCapability(module);
                     if (iPowerModule != null && iPowerModule.isModuleOnline()) {
-
-                        movementResistance += iPowerModule.applyPropertyModifiers(NuminaConstants.MOVEMENT_RESISTANCE);
+                        // movement resistance is already summed by getMovementResistance() above
                         ItemAttributeModifiers moduleModifiers = iPowerModule.getModule().getAttributeModifiers();
 
                         //                        NuminaLogger.logDebug("module: " + module);
